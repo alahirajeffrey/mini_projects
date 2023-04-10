@@ -1,20 +1,21 @@
 import socket
 
-## mac address of bluetooth server
-BLUETOOH_ADDRESS="58:91:cf:eb:8b:78"
+# mac address of bluetooth server
+BLUETOOH_ADDRESS = "58:91:cf:eb:8b:78"
 
 if __name__ == '__main__':
 
-    ## setup socket server
-    server = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)   
+    # setup socket server
+    server = socket.socket(socket.AF_BLUETOOTH,
+                           socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
     server.bind((BLUETOOH_ADDRESS, 4))
     server.listen(1)
 
-    ## accept request from client
+    # accept request from client
     client, address = server.accept()
     print(f"Connection from {address} has been established")
 
-    ## setup bluetooth messaging
+    # setup bluetooth messaging
     try:
         while True:
             data = client.recv(1024)
@@ -27,6 +28,6 @@ if __name__ == '__main__':
     except OSError as err:
         print(err)
 
-    ## close client and server connection
+    # close client and server connection
     client.close()
     server.close()

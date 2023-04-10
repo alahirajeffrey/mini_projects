@@ -24,7 +24,7 @@ if __name__ == '__main__':
             message = input('Enter message:')
             client.send(message.encode('utf-8'))
 
-    except socket.error as err:
+    except OSError as err:
         print(err)
 
     ## close client and server connection

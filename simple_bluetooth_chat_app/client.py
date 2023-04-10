@@ -5,8 +5,8 @@ if __name__ == '__main__':
     ## connect to bluetooth server
     client = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
-    BLUETOOH_ADDRESS = input("Input MAC address of bluetooth server: ")
-    client.connect((BLUETOOH_ADDRESS, 4))
+    bluetooth_address = input("Input MAC address of bluetooth server: ")
+    client.connect((bluetooth_address, 4))
 
     ## setup bluetooth messaging
     try:

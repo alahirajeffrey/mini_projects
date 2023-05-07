@@ -12,7 +12,7 @@ The reason for this choice was the fact that i have not written html and css in 
 
 ### Correct answer screenshot
 
-![correct answers](/assets/correct_answer.png)
+![correct answers](./assets/correct_answer.png)
 
 ### Wrong answer screenshot
 

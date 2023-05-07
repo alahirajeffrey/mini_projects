@@ -10,7 +10,7 @@ Built using c# so as learn as well as improve my knowledge of c#, the dotnet eco
 
 ## Image
 
-![Alt text](/assets/img.png "calculator")
+![Screenshot](./assets/img.png "calculator")
 
 ## How to setup and use
 

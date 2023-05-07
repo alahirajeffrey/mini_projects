@@ -16,11 +16,11 @@ The reason for this choice was the fact that i have not written html and css in 
 
 ### Wrong answer screenshot
 
-![wrong answers](/assets/wrong_answer.png)
+![wrong answers](./assets/wrong_answer.png)
 
 ### Scores screenshot
 
-![scores](/assets/score.png)
+![scores](./assets/score.png)
 
 ## Possible Areas of Improvement
 

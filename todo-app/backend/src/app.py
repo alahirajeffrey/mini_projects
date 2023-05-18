@@ -75,6 +75,3 @@ def update_todo(id):
     todo.completed = True
     db.session.commit()
     return jsonify({"message":'todo updated'})
-
-if __name__ == "__main__":
-    app.run()

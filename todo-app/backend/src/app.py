@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -14,10 +14,19 @@ db.init_app(app)
 ## define todo model
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullablle=False)
+    title = db.Column(db.String, nullable=False)
     detail = db.Column(db.String)
     completed = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime(), nullable=False, default=datetime.utcnow)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title" : self.title,
+            "detail": self.detail,
+            "completed": self.completed,
+            "date_created": self.date_created
+        }
 
 # create table from todo model
 with app.app_context():
@@ -31,27 +40,41 @@ def index():
 ## create todo
 @app.route('/todo', methods=['POST'] )
 def create_todo():
-    return 'todo created'
+    title = request.form.get('title')
+    detail = request.form.get('detail')
+    new_todo = Todo(title=title, detail=detail)
+    db.session.add(new_todo)
+    db.session.commit()
+    return jsonify({"message":"todo created"}) 
 
 ## get all todos
 @app.route('/todo', methods=['GET'])
 def get_all_todos():
-    return 'todos'
+    todos = Todo.query.all()
+    return [todo.serialize() for todo in todos]
 
 ## get todo by id
-@app.route('/todo/<id>', methods=['GET'])
+@app.route('/todo/<int:id>', methods=['GET'])
 def get_todo_by_id(id):
-    return 'todo'
+    todo = db.get_or_404(Todo, id)
+    return todo.serialize()
+    
 
 ## delete todo by id
-@app.route('/todo/<id>', methods=['DELETE'])
+@app.route('/todo/<int:id>', methods=['DELETE'])
 def delete_todo_by_id(id):
-    return 'todo deleted'
+    todo = db.get_or_404(Todo, id)
+    db.session.delete(todo)
+    db.session.commit()
+    return jsonify({"message":"todo deleted"})
 
 ## update todo by id
-@app.route('/todo/<id>', methods=['PATCH'])
+@app.route('/todo/<int:id>', methods=['PATCH'])
 def update_todo(id):
-    return 'todo updated'
+    todo = db.get_or_404(Todo, id)
+    todo.completed = True
+    db.session.commit()
+    return jsonify({"message":'todo updated'})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

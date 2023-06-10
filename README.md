@@ -4,3 +4,4 @@
 - [calculator](https://github.com/alahirajeffrey/mini_projects/tree/master/calculator) built using c#
 - [quiz app](https://github.com/alahirajeffrey/mini_projects/tree/master/quiz-app) built with html, css and javascript
 - [todo api](https://github.com/alahirajeffrey/mini_projects/tree/master/todo-app) built with flask
+- [taro yamane sample size calculator](https://github.com/alahirajeffrey/mini_projects/tree/master/taro-yamane-calculator) built using golang
